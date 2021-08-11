@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Snake</title>
+</head>
+<body>
+    <div class="gameContainer">
+        <div class="scoreTable">
+            <div class="currentScore">
+                <h2 class="currentScore_scoreTitle">Score: <span class="currentScore_score">0</span></h2>
+            </div>
+            <div class="bestScore">
+                <h2 class="bestScore_scoreTitle">Your best: <span class="bestScore_score">0</span></h2> 
+                
+            </div>
+        </div>
+        <canvas id="canvas" width="600" height="400"></canvas>
+        <div class="gameOptions">        
+            <div class="gameOptions_actions">
+                <button id="stopBtn" class="actionBtn">Pause</button>
+                <button id="startBtn" class="actionBtn">Start</button>
+                <button id="resetBtn" class="actionBtn">Reset</button>
+            </div >
+                
+            <div class="change-difficulty">        
+                <!-- <form>
+                    <input type="radio" id="beginer" name="difficulty" value="500">
+                    <label for="beginer">Beginer</label><br>
+                    <input type="radio" id="intermediate" name="difficulty" value="300">
+                    <label for="intermediate">Intermediate</label><br>
+                    <input type="radio" id="advanced" name="difficulty" value="100" checked>
+                    <label for="advanced">Advanced</label>
+                </form>
+                <button class="diff-btn">Change difficulty</button> -->
+            </div>
+            <div class="gameOptions_difficulty">
+                <label for="difficulty_levels">Choose your level:</label>
+                <select id="difficulty_levels">
+                    <option value="100" selected>Advanced</option>
+                    <option value="300">Intermediate</option>
+                    <option value="500">Beginer</option>
+                </select>
+            </div>
+        </div>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

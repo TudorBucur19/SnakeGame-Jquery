@@ -1,0 +1,59 @@
+@import './variables';
+@import './extends';
+@import './mixins';
+
+.gameContainer {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: @canvasSize;
+}
+
+#canvas {
+    background-color: black;
+    margin: 0 auto;
+}
+
+.scoreTable {
+    display: flex;
+    justify-content: space-between;
+    width: @canvasSize;
+    background-color: green;
+    color: white;
+}
+
+.currentScore,  .bestScore {
+    display: flex;
+    width: fit-content;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1rem;
+    padding: 0 2%;
+}
+
+.gameOptions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 3% 0;
+    padding-bottom: 3%;
+    border-bottom: 2px solid green;
+
+    .actionBtn {
+        &:extend(.primaryBtn);
+    }
+    
+    #stopBtn {
+        .btn-style(orange, 2px);
+    }
+    
+    #startBtn {
+        .btn-style(green, 2px);
+    }
+    
+    #resetBtn {
+        .btn-style(red, 2px);
+    }
+}
+
