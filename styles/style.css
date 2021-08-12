@@ -1,4 +1,5 @@
 .primaryBtn,
+.gameBoard .messageBox .messageBox_content .dialogBoxBtn,
 .gameOptions .actionBtn {
   padding: 0.4rem 0.6rem;
   border-radius: 6px;
@@ -12,9 +13,47 @@
   align-items: center;
   width: 600px;
 }
-#canvas {
+.gameBoard {
+  position: relative;
+}
+.gameBoard #canvas {
   background-color: black;
   margin: 0 auto;
+}
+.gameBoard .messageBox {
+  display: none;
+  position: absolute;
+  top: 35%;
+  left: 32.5%;
+  width: 35%;
+  border: 3px solid green;
+  border-radius: 6px;
+  background: black;
+  z-index: 10;
+}
+.gameBoard .messageBox .messageBox_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.gameBoard .messageBox .messageBox_content .messageBox_content_message {
+  color: white;
+}
+.gameBoard .messageBox .messageBox_content .messageBox_content_recordMsg {
+  display: none;
+  color: white;
+  margin: 3%;
+  text-align: center;
+}
+.gameBoard .messageBox .messageBox_content .dialogBoxBtn {
+  border: 2px solid green;
+  color: green;
+  margin-bottom: 4%;
+}
+.gameBoard .messageBox .messageBox_content .dialogBoxBtn:hover {
+  background: green;
+  color: white;
 }
 .scoreTable {
   display: flex;
@@ -38,6 +77,7 @@
   margin: 3% 0;
   padding-bottom: 3%;
   border-bottom: 2px solid green;
+  font-weight: bold;
 }
 .gameOptions #stopBtn {
   border: 2px solid orange;
@@ -62,4 +102,24 @@
 .gameOptions #resetBtn:hover {
   background: red;
   color: white;
+}
+.gameOptions_size {
+  display: flex;
+  align-items: center;
+}
+.gameOptions_size .size_check {
+  display: flex;
+  color: green;
+}
+.gameOptions_size .size_check .size_check_radio {
+  background-color: green;
+}
+.gameOptions_difficulty {
+  color: green;
+}
+.gameOptions_difficulty .difficulty_select {
+  border: 2px solid green;
+  border-radius: 6px;
+  color: green;
+  padding: 0.4rem;
 }

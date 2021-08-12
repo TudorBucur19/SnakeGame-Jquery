@@ -15,39 +15,56 @@
                 <h2 class="currentScore_scoreTitle">Score: <span class="currentScore_score">0</span></h2>
             </div>
             <div class="bestScore">
-                <h2 class="bestScore_scoreTitle">Your best: <span class="bestScore_score">0</span></h2> 
-                
+                <h2 class="bestScore_scoreTitle">Your best: <span class="bestScore_score">0</span></h2>                 
             </div>
         </div>
-        <canvas id="canvas" width="600" height="400"></canvas>
+        <div class="gameBoard">
+            <canvas id="canvas" width="600" height="400"></canvas>
+            <div class="messageBox">
+                <div class="messageBox_content">
+                    <p class="messageBox_content_message">Ooops! You lose...</p>
+                    <p class="messageBox_content_recordMsg"></p>
+                    <div>
+                        <button class="dialogBoxBtn" id="playAgainBtn">Play again!</button>
+                        <button class="dialogBoxBtn" id="closeBtn">No, thanks!</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>        
         <div class="gameOptions">        
             <div class="gameOptions_actions">
                 <button id="stopBtn" class="actionBtn">Pause</button>
                 <button id="startBtn" class="actionBtn">Start</button>
                 <button id="resetBtn" class="actionBtn">Reset</button>
             </div >
-                
-            <div class="change-difficulty">        
-                <!-- <form>
-                    <input type="radio" id="beginer" name="difficulty" value="500">
-                    <label for="beginer">Beginer</label><br>
-                    <input type="radio" id="intermediate" name="difficulty" value="300">
-                    <label for="intermediate">Intermediate</label><br>
-                    <input type="radio" id="advanced" name="difficulty" value="100" checked>
-                    <label for="advanced">Advanced</label>
-                </form>
-                <button class="diff-btn">Change difficulty</button> -->
+            <div class="gameOptions_size">
+                <form class="size_check">
+                    <input type="radio" class="size_check_radio" id="small" name="snakeSize" value="10" checked>
+                    <label for="small">Narrow Snake</label><br>
+                    <input type="radio" id="large" name="snakeSize" value="20">
+                    <label for="large">Wide Snake</label>
+                </form>    
             </div>
+            
             <div class="gameOptions_difficulty">
-                <label for="difficulty_levels">Choose your level:</label>
-                <select id="difficulty_levels">
-                    <option value="100" selected>Advanced</option>
-                    <option value="300">Intermediate</option>
-                    <option value="500">Beginer</option>
+                <label for="difficulty_levels">Game Speed:</label>
+                <select id="difficulty_levels" class="difficulty_select">
+                    <option value="100" selected>Storm</option>
+                    <option value="300">Chill</option>
+                    <option value="500">Ardelean</option>
                 </select>
             </div>
         </div>
-        
+        <section>
+            <audio id="eat">
+                <source src="./assets/sounds/eatfood.ogg" type="audio/mpeg">
+            </audio>
+            <audio id="gameover">
+                <source src="./assets/sounds/gameover.ogg" type="audio/mpeg">
+            </audio>
+
+        </section>
     </div>
     <script src="script.js"></script>
 </body>

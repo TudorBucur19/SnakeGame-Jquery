@@ -12,27 +12,45 @@ $(function(){
 
     let keyPressed = DOWN;
 
-    let snake = [
-        {x: 50, y: 100},
-        {x: 50, y: 90},
-        {x: 50, y: 80},
-    ];
-    
-    const initialSnake= [
-        {x: 50, y: 100},
-        {x: 50, y: 90},
-        {x: 50, y: 80},
-    ]; 
-  
-
-    const snakeWidth = 10;
-    const snakeHieght = 10;
-    const blockSize = 10;
     let gameSpeed = 100;
+    let gameSize = 10;
+
+    // const snakeSize = {
+    //     snakeWidth: gameSize,
+    //     snakeHieght: gameSize,
+    //     blockSize: gameSize,
+    // };
+    // console.log(snakeSize);
+
+    // const { snakeWidth, snakeHieght, blockSize } = snakeSize;
+
+    let snakeWidth = 10;
+    let snakeHieght = 10;
+    let blockSize = 10;
+
+    let snake = [
+        {x: 40, y: 100},
+        {x: 40, y: 100-blockSize},
+        {x: 40, y: 100-blockSize * 2},
+    ];
+        
+    const initialSnake= [
+        {x: 40, y: 100},
+        {x: 40, y: 100-blockSize},
+        {x: 40, y: 100-blockSize * 2},
+    ]; 
+    
     
 
     $( "#difficulty_levels" ).on('change', function() {
         gameSpeed = $('option:selected').val();
+    });
+
+    $('.size_check').on('change', function(){
+       gameSize = parseInt($('input[name="snakeSize"]:checked').val());
+       snakeWidth = gameSize;
+       snakeHieght = gameSize;
+       blockSize = gameSize;    
     });
         
 
@@ -45,8 +63,8 @@ $(function(){
             if(index === 0) {
                 // ctx.fillStyle = 'yellow';
                 // ctx.fillRect(value.x, value.y, snakeWidth, snakeHieght);
-                selfColision(value.x, value.y) && game.stop('Game over!', updateScoreHistory);
-                borderColision(value.x, value.y) && game.stop('Game over!', updateScoreHistory);    
+                selfColision(value.x, value.y) && game.stop(handleGameOver);
+                borderColision(value.x, value.y) && game.stop(handleGameOver);    
                 eatFood();            
             }
         });
@@ -57,18 +75,27 @@ $(function(){
     };
 
     const borderColision = (x, y) => {
-        return outOfCanvas = x > canvas.width || y > canvas.height || x < -1 || y < -1; 
+        return outOfCanvas = x >= canvas.width || y >= canvas.height || x < -1 || y < -1; 
     };
 
-    const updateScoreHistory = () => {
+    const handleGameOver = () => {
+        const oldRecord = Math.max(...scoreHistory);
         scoreHistory.push(score);
-        $('.bestScore_score').text(Math.max(...scoreHistory));
+        $('audio#gameover')[0].play();
+        $('.messageBox').fadeIn(1000, function() {
+            const record = Math.max(...scoreHistory);
+            $('.bestScore_score').text(record);
+            if (score > oldRecord) {
+                $('.messageBox_content_recordMsg').show(500).text('Congrats! You hit a new record!');
+            }
+        });
     };
 
     //triggered only when snake reaches the food
     const eatFood = () => {
         const lastCell = snake[snake.length - 1];
         if (JSON.stringify(snake[0]) === JSON.stringify(foodPosition)) {
+            $('audio#eat')[0].play();
             snake.push(lastCell);
             score += 1;
             $('.currentScore_score').text(score);
@@ -118,7 +145,7 @@ $(function(){
     };
 
     const generateRandomNumber = (max) => {
-        return Math.floor(Math.random() * (max/10)) * 10;
+        return Math.floor(Math.random() * (max/20)) * 20;
     };
 
     //recursive function to generate food position outside the snake body
@@ -147,7 +174,7 @@ $(function(){
         ctx.fillRect(foodPosition.x, foodPosition.y, snakeWidth, snakeHieght);
     };
 
-    //needs improvement
+    //resets the snake and score
     const resetGame = () => {
         clearCanvas();
         snake = [...initialSnake];
@@ -175,9 +202,8 @@ $(function(){
             start() {
                 currentGame = setInterval(game, gameSpeed);
             },
-            stop(message, callBack = false) {
+            stop(callBack = false) {
                 clearInterval(currentGame);
-                console.log(message);
                 callBack && callBack();
             }
         }
@@ -188,7 +214,7 @@ $(function(){
     const game = gameClosure();
 
     $('#stopBtn').click(function() {
-        game.stop('Game paused')
+        game.stop()
     });
 
     $('#startBtn').click(function() {
@@ -198,11 +224,26 @@ $(function(){
     $('#resetBtn').click(function() {
         resetGame();
     })
+    
+    $('#playAgainBtn').click(function() {
+        $('.messageBox').fadeOut(1000, function() {
+            $('.messageBox_content_recordMsg').hide();
+            resetGame();
+        });
+        
+    });
+
+    $('#closeBtn').click(function() {
+        $('.messageBox').fadeOut(1000);        
+    });
 
 });
 
-//add game over message
-//add styles to buttons and form
-//keeps score history
-//fix reset function
-//refactor the snake moving to not iterate the whole array
+
+
+
+//add game over message - done
+//add styles to buttons and form - done
+//keeps score history - done
+//fix reset function - done
+//refactor the snake moving to not iterate the whole array - done
