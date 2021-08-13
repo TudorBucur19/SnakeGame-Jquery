@@ -2,6 +2,10 @@
 @import './extends';
 @import './mixins';
 
+body {
+    font-family: @generalFont;
+}
+
 .gameContainer {
     margin: 0 auto;
     display: flex;
@@ -28,6 +32,7 @@
         border: 3px solid green;
         border-radius: 6px;
         background: black;
+        font-family: 'Permanent Marker', cursive;
         z-index: 10;
 
         .messageBox_content {
@@ -71,7 +76,6 @@
 .currentScore,  .bestScore {
     display: flex;
     width: fit-content;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 1.1rem;
     padding: 0 2%;
 }
@@ -84,9 +88,14 @@
     padding-bottom: 3%;
     border-bottom: 2px solid green;
     font-weight: bold;
+}
+
+.gameOptions_actions {
+    display: flex;
 
     .actionBtn {
         &:extend(.primaryBtn);
+        margin-right: 2%;
     }
     
     #stopBtn {
@@ -100,6 +109,7 @@
     #resetBtn {
         .btn-style(red, 2px);
     }
+    
 }
 
 .gameOptions_size {
@@ -124,5 +134,6 @@
         border-radius: 6px;
         color: green;
         padding: 0.4rem;
+        font-family: @generalFont;
     }
 }

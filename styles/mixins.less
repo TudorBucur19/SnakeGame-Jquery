@@ -1,10 +1,16 @@
+@import './variables';
+
 .btn-style(@color, @borderSize) {
     border: @borderSize solid @color;
     color: @color;
-
     &:hover {
         background: @color;
         color: white;
+    }
+
+    &:disabled {
+        pointer-events: none;
+        opacity: 0.4;
     }
 }
 

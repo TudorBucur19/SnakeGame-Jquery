@@ -1,9 +1,13 @@
 .primaryBtn,
 .gameBoard .messageBox .messageBox_content .dialogBoxBtn,
-.gameOptions .actionBtn {
+.gameOptions_actions .actionBtn {
   padding: 0.4rem 0.6rem;
   border-radius: 6px;
   background: none;
+  font-family: 'Permanent Marker', cursive;
+}
+body {
+  font-family: 'Permanent Marker', cursive;
 }
 .gameContainer {
   margin: 0 auto;
@@ -29,6 +33,7 @@
   border: 3px solid green;
   border-radius: 6px;
   background: black;
+  font-family: 'Permanent Marker', cursive;
   z-index: 10;
 }
 .gameBoard .messageBox .messageBox_content {
@@ -55,6 +60,10 @@
   background: green;
   color: white;
 }
+.gameBoard .messageBox .messageBox_content .dialogBoxBtn:disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
 .scoreTable {
   display: flex;
   justify-content: space-between;
@@ -66,7 +75,6 @@
 .bestScore {
   display: flex;
   width: fit-content;
-  font-family: Arial, Helvetica, sans-serif;
   font-size: 1.1rem;
   padding: 0 2%;
 }
@@ -79,29 +87,47 @@
   border-bottom: 2px solid green;
   font-weight: bold;
 }
-.gameOptions #stopBtn {
+.gameOptions_actions {
+  display: flex;
+}
+.gameOptions_actions .actionBtn {
+  margin-right: 2%;
+}
+.gameOptions_actions #stopBtn {
   border: 2px solid orange;
   color: orange;
 }
-.gameOptions #stopBtn:hover {
+.gameOptions_actions #stopBtn:hover {
   background: orange;
   color: white;
 }
-.gameOptions #startBtn {
+.gameOptions_actions #stopBtn:disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+.gameOptions_actions #startBtn {
   border: 2px solid green;
   color: green;
 }
-.gameOptions #startBtn:hover {
+.gameOptions_actions #startBtn:hover {
   background: green;
   color: white;
 }
-.gameOptions #resetBtn {
+.gameOptions_actions #startBtn:disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+.gameOptions_actions #resetBtn {
   border: 2px solid red;
   color: red;
 }
-.gameOptions #resetBtn:hover {
+.gameOptions_actions #resetBtn:hover {
   background: red;
   color: white;
+}
+.gameOptions_actions #resetBtn:disabled {
+  pointer-events: none;
+  opacity: 0.4;
 }
 .gameOptions_size {
   display: flex;
@@ -122,4 +148,5 @@
   border-radius: 6px;
   color: green;
   padding: 0.4rem;
+  font-family: 'Permanent Marker', cursive;
 }

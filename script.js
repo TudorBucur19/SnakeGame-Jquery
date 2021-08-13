@@ -13,58 +13,42 @@ $(function(){
     let keyPressed = DOWN;
 
     let gameSpeed = 100;
-    let gameSize = 10;
+    let snakeSize = 10;
 
-    // const snakeSize = {
-    //     snakeWidth: gameSize,
-    //     snakeHieght: gameSize,
-    //     blockSize: gameSize,
-    // };
-    // console.log(snakeSize);
-
-    // const { snakeWidth, snakeHieght, blockSize } = snakeSize;
-
-    let snakeWidth = 10;
-    let snakeHieght = 10;
-    let blockSize = 10;
-
-    let snake = [
+    const initialSnake = (block) => {
+        return [
         {x: 40, y: 100},
-        {x: 40, y: 100-blockSize},
-        {x: 40, y: 100-blockSize * 2},
-    ];
+        {x: 40, y: 100-block},
+        {x: 40, y: 100-block * 2},
+        ];
+    };
+
+    let snake = initialSnake(snakeSize);
         
-    const initialSnake= [
-        {x: 40, y: 100},
-        {x: 40, y: 100-blockSize},
-        {x: 40, y: 100-blockSize * 2},
-    ]; 
-    
-    
 
     $( "#difficulty_levels" ).on('change', function() {
         gameSpeed = $('option:selected').val();
+        
+        resetGame();
     });
 
     $('.size_check').on('change', function(){
-       gameSize = parseInt($('input[name="snakeSize"]:checked').val());
-       snakeWidth = gameSize;
-       snakeHieght = gameSize;
-       blockSize = gameSize;    
+       snakeSize = parseInt($('input[name="snakeSize"]:checked').val());
+       game.stop();
+       resetGame();
     });
         
 
     const drawSnake = () => {
         $.each(snake, (index, value) => {
             ctx.fillStyle = 'red';
-            ctx.fillRect(value.x, value.y, snakeWidth, snakeHieght);
+            ctx.fillRect(value.x, value.y, snakeSize, snakeSize);
             ctx.strokeStyle = 'white';
-            ctx.strokeRect(value.x, value.y, snakeWidth, snakeHieght)
+            ctx.strokeRect(value.x, value.y, snakeSize, snakeSize)
             if(index === 0) {
                 // ctx.fillStyle = 'yellow';
-                // ctx.fillRect(value.x, value.y, snakeWidth, snakeHieght);
-                selfColision(value.x, value.y) && game.stop(handleGameOver);
-                borderColision(value.x, value.y) && game.stop(handleGameOver);    
+                // ctx.fillRect(value.x, value.y, snakeSize, snakeSize);
+                (selfColision(value.x, value.y) || borderColision(value.x, value.y)) && game.stop(handleGameOver);   
                 eatFood();            
             }
         });
@@ -83,6 +67,8 @@ $(function(){
         scoreHistory.push(score);
         $('audio#gameover')[0].play();
         $('.messageBox').fadeIn(1000, function() {
+            //$('#startBtn, #stopBtn, #resetBtn').prop('disabled', true);
+            handleDisable('#stopBtn', '#resetBtn')
             const record = Math.max(...scoreHistory);
             $('.bestScore_score').text(record);
             if (score > oldRecord) {
@@ -171,23 +157,30 @@ $(function(){
     //places the food on the map
     const dropFood = () => {
         ctx.fillStyle = 'green';
-        ctx.fillRect(foodPosition.x, foodPosition.y, snakeWidth, snakeHieght);
+        ctx.fillRect(foodPosition.x, foodPosition.y, snakeSize, snakeSize);
     };
 
     //resets the snake and score
     const resetGame = () => {
         clearCanvas();
-        snake = [...initialSnake];
+        //snake = [...initialSnake];
+        snake = initialSnake(snakeSize);
         score = 0;
         $('.currentScore_score').text(score);
         keyPressed = DOWN;
     };
+
+    const handleDisable = (...args) => {
+        $('' + args.toString()).prop('disabled', function(i, status) {
+            return !status;
+        });
+    }
  
     const gameLoop = () => {
         clearCanvas();
         dropFood();
         drawSnake();
-        moveSnake(keyPressed, snake, blockSize);
+        moveSnake(keyPressed, snake, snakeSize);
     };
 
     // closure used to start an stop the game
@@ -209,16 +202,20 @@ $(function(){
         }
     };
 
-    ////////////
-
     const game = gameClosure();
 
+    ////////////
+
     $('#stopBtn').click(function() {
-        game.stop()
+        game.stop();
+        if ($('#startBtn').attr('disabled')){
+            handleDisable('#startBtn');
+        }
     });
 
     $('#startBtn').click(function() {
-        game.start()
+        game.start();
+        handleDisable('#startBtn');
     });
 
     $('#resetBtn').click(function() {
@@ -229,21 +226,18 @@ $(function(){
         $('.messageBox').fadeOut(1000, function() {
             $('.messageBox_content_recordMsg').hide();
             resetGame();
+            handleDisable('#startBtn', '#stopBtn', '#resetBtn');
         });
         
     });
 
     $('#closeBtn').click(function() {
-        $('.messageBox').fadeOut(1000);        
+        $('.messageBox').fadeOut(1000, function() {
+            handleDisable('#startBtn', '#stopBtn', '#resetBtn');
+        });        
     });
 
+    $(document).keydown(function(e) {
+    });
+ 
 });
-
-
-
-
-//add game over message - done
-//add styles to buttons and form - done
-//keeps score history - done
-//fix reset function - done
-//refactor the snake moving to not iterate the whole array - done

@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
     <title>Snake</title>
 </head>
@@ -48,11 +51,11 @@
             </div>
             
             <div class="gameOptions_difficulty">
-                <label for="difficulty_levels">Game Speed:</label>
+                <label for="difficulty_levels">Speed:</label>
                 <select id="difficulty_levels" class="difficulty_select">
                     <option value="100" selected>Storm</option>
                     <option value="300">Chill</option>
-                    <option value="500">Ardelean</option>
+                    <option value="500">Slow</option>
                 </select>
             </div>
         </div>
@@ -63,7 +66,6 @@
             <audio id="gameover">
                 <source src="./assets/sounds/gameover.ogg" type="audio/mpeg">
             </audio>
-
         </section>
     </div>
     <script src="script.js"></script>
