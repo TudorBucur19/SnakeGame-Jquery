@@ -137,8 +137,35 @@ body {
   display: flex;
   color: green;
 }
-.gameOptions_size .size_check .size_check_radio {
-  background-color: green;
+.gameOptions_size .size_check input {
+  visibility: hidden;
+}
+.gameOptions_size .size_check input:checked + label {
+  opacity: 0.5;
+}
+.gameOptions_size .size_check label {
+  cursor: pointer;
+}
+.gameOptions_size .size_check label:hover {
+  transform: scale(1.2);
+}
+.gameOptions_size .size_check label .snake_small {
+  display: flex;
+}
+.gameOptions_size .size_check label .snake_small .snake_small_block {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border: 1px solid white;
+}
+.gameOptions_size .size_check label .snake_big {
+  display: flex;
+}
+.gameOptions_size .size_check label .snake_big .snake_big_block {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border: 1px solid white;
 }
 .gameOptions_difficulty {
   color: green;

@@ -119,8 +119,41 @@ body {
         display: flex;
         color: green;
 
-        .size_check_radio {
-            background-color: green;
+        input {
+            visibility: hidden;
+        }
+
+        input:checked+label {
+            opacity: 0.5;
+        }
+
+        label {
+            cursor: pointer;
+            
+            &:hover {
+                transform: scale(1.2);
+            }
+
+            .snake_small {
+                display: flex;
+                .snake_small_block {
+                    width: 10px;
+                    height: 10px;
+                    background-color: red;
+                    border: 1px solid white;
+                }
+            }
+
+            .snake_big {
+                display: flex;
+                .snake_big_block {
+                    width: 20px;
+                    height: 20px;
+                    background-color: red;
+                    border: 1px solid white;
+                }
+            }
+            
         }
 
     }
@@ -137,3 +170,7 @@ body {
         font-family: @generalFont;
     }
 }
+
+
+
+
