@@ -5,6 +5,7 @@ $(function(){
     let score = 0;
     let scoreHistory = [0];    
     let isPlaying = false;
+    let isGameOver = false;
 
     const LEFT = 'ArrowLeft';
     const UP = 'ArrowUp';
@@ -64,6 +65,7 @@ $(function(){
     const handleGameOver = () => {
         const oldRecord = Math.max(...scoreHistory);
         scoreHistory.push(score);
+        isGameOver = true;
         $('audio#gameover')[0].play();
         $('.messageBox').fadeIn(1000, function() {
             toggleDisable('#stopBtn', '#resetBtn')
@@ -165,6 +167,7 @@ $(function(){
         score = 0;
         $('.currentScore_score').text(score);
         keyPressed = DOWN;
+        isGameOver = false; 
     };
 
     const toggleDisable = (...args) => {
@@ -243,10 +246,12 @@ $(function(){
     });
 
     // start and pause the game by pressing SPACE bar
-    $(document).keydown(function(e) {
+    $(document).keydown(function(e) { 
+        if (isGameOver) return; 
         if (e.key === " ") {
             startStopGame();
         }
     });
  
-});
+}); 
+  
