@@ -4,6 +4,7 @@ $(function(){
     const ctx = canvas.getContext('2d');
     let score = 0;
     let scoreHistory = [0];    
+    let isPlaying = false;
 
     const LEFT = 'ArrowLeft';
     const UP = 'ArrowUp';
@@ -27,21 +28,19 @@ $(function(){
         
 
     $( "#difficulty_levels" ).on('change', function() {
-        gameSpeed = $('option:selected').val();
-        
+        gameSpeed = $('option:selected').val();        
         resetGame();
     });
 
     $('.size_check').on('change', function(){
        snakeSize = parseInt($('input[name="snakeSize"]:checked').val());
-       game.stop();
        resetGame();
     });
         
 
     const drawSnake = () => {
         $.each(snake, (index, value) => {
-            ctx.fillStyle = 'red';
+            ctx.fillStyle = '#51f542';
             ctx.fillRect(value.x, value.y, snakeSize, snakeSize);
             ctx.strokeStyle = 'white';
             ctx.strokeRect(value.x, value.y, snakeSize, snakeSize)
@@ -67,8 +66,7 @@ $(function(){
         scoreHistory.push(score);
         $('audio#gameover')[0].play();
         $('.messageBox').fadeIn(1000, function() {
-            //$('#startBtn, #stopBtn, #resetBtn').prop('disabled', true);
-            handleDisable('#stopBtn', '#resetBtn')
+            toggleDisable('#stopBtn', '#resetBtn')
             const record = Math.max(...scoreHistory);
             $('.bestScore_score').text(record);
             if (score > oldRecord) {
@@ -156,25 +154,33 @@ $(function(){
 
     //places the food on the map
     const dropFood = () => {
-        ctx.fillStyle = 'green';
+        ctx.fillStyle = '#fa0525';
         ctx.fillRect(foodPosition.x, foodPosition.y, snakeSize, snakeSize);
     };
 
     //resets the snake and score
     const resetGame = () => {
         clearCanvas();
-        //snake = [...initialSnake];
         snake = initialSnake(snakeSize);
         score = 0;
         $('.currentScore_score').text(score);
         keyPressed = DOWN;
     };
 
-    const handleDisable = (...args) => {
+    const toggleDisable = (...args) => {
         $('' + args.toString()).prop('disabled', function(i, status) {
             return !status;
         });
-    }
+    };
+
+    const startStopGame = () => {
+        if (isPlaying) {
+            game.stop();
+        } else {
+            game.start();
+        };            
+        toggleDisable('#startBtn', '#stopBtn');
+    };
  
     const gameLoop = () => {
         clearCanvas();
@@ -194,8 +200,11 @@ $(function(){
         return {
             start() {
                 currentGame = setInterval(game, gameSpeed);
+                isPlaying = true;
             },
+
             stop(callBack = false) {
+                isPlaying = false;
                 clearInterval(currentGame);
                 callBack && callBack();
             }
@@ -207,15 +216,11 @@ $(function(){
     ////////////
 
     $('#stopBtn').click(function() {
-        game.stop();
-        if ($('#startBtn').attr('disabled')){
-            handleDisable('#startBtn');
-        }
+        startStopGame();
     });
 
     $('#startBtn').click(function() {
-        game.start();
-        handleDisable('#startBtn');
+        startStopGame();
     });
 
     $('#resetBtn').click(function() {
@@ -226,18 +231,22 @@ $(function(){
         $('.messageBox').fadeOut(1000, function() {
             $('.messageBox_content_recordMsg').hide();
             resetGame();
-            handleDisable('#startBtn', '#stopBtn', '#resetBtn');
+            toggleDisable('#startBtn', '#resetBtn');
         });
         
     });
 
     $('#closeBtn').click(function() {
         $('.messageBox').fadeOut(1000, function() {
-            handleDisable('#startBtn', '#stopBtn', '#resetBtn');
+            toggleDisable('#startBtn', '#resetBtn');
         });        
     });
 
+    // start and pause the game by pressing SPACE bar
     $(document).keydown(function(e) {
+        if (e.key === " ") {
+            startStopGame();
+        }
     });
  
 });
