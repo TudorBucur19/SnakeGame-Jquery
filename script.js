@@ -2,6 +2,7 @@ $(function(){
 
     const canvas = $('#canvas')[0];
     const ctx = canvas.getContext('2d');
+    
     let score = 0;
     let scoreHistory = [0];    
     let isPlaying = false;
@@ -9,19 +10,21 @@ $(function(){
 
     const LEFT = 'ArrowLeft';
     const UP = 'ArrowUp';
-    const RIGHT = 'ArrowRight';
+    const RIGHT = 'ArrowRight'; 
     const DOWN = 'ArrowDown';
 
     let keyPressed = DOWN;
 
     let gameSpeed = 100;
-    let snakeSize = 10;
+    let snakeSize = 20;
+    const initialX = snakeSize * 4;
+    const initialY = snakeSize * 6;
 
     const initialSnake = (block) => {
         return [
-        {x: 40, y: 100},
-        {x: 40, y: 100-block},
-        {x: 40, y: 100-block * 2},
+        {x: initialX, y: initialY},
+        {x: initialX, y: initialY-block},
+        {x: initialX, y: initialY-block * 2},
         ];
     };
 
@@ -130,15 +133,15 @@ $(function(){
         }
     };
 
-    const generateRandomNumber = (max) => {
-        return Math.floor(Math.random() * (max/20)) * 20;
+    const generateRandomNumber = (max, size) => {
+        return Math.floor(Math.random() * (max/size)) * size;
     };
 
     //recursive function to generate food position outside the snake body
     const getFoodPosition = () => {
         let foodCoords = {
-            x: generateRandomNumber(canvas.width),
-            y: generateRandomNumber(canvas.height)
+            x: generateRandomNumber(canvas.width, snakeSize),
+            y: generateRandomNumber(canvas.height, snakeSize)
         };
 
         if (JSON.stringify(snake).includes(JSON.stringify(foodCoords))) {
@@ -166,6 +169,7 @@ $(function(){
         snake = initialSnake(snakeSize);
         score = 0;
         $('.currentScore_score').text(score);
+        foodPosition = getFoodPosition();
         keyPressed = DOWN;
         isGameOver = false; 
     };
@@ -252,6 +256,9 @@ $(function(){
             startStopGame();
         }
     });
+
+    // set gamecontainer width according to canvas size
+    $('.gameContainer').width(canvas.width);
  
 }); 
   

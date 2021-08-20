@@ -4,16 +4,14 @@
 
 body {
     font-family: @generalFont;
+    margin: 0;
+    padding: 0;
+    .containerSize(100vw, 100vh);
+    display: flex;
+    justify-content: center;
+    background-color: @defaultPrimaryColor;
 }
 
-.gameContainer {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: @canvasSize;
-}
 
 .gameBoard {
     position: relative;
@@ -28,7 +26,7 @@ body {
         display: none;
         position: absolute;
         .dialogBoxPosition(30, 35);
-        width: 35%;
+        width: 40%;
         border: 3px solid green;
         border-radius: 6px;
         background: black;
@@ -40,6 +38,7 @@ body {
             flex-direction: column;
             justify-content: center;
             align-items: center;   
+            font-size: @defaultFontSize;
             
             .messageBox_content_message {
                 color: white;
@@ -52,6 +51,7 @@ body {
                 text-align: center;
             }
         
+
             .dialogBoxBtn {
                 &:extend(.primaryBtn);
                 .btn-style(green, 2px);
@@ -68,8 +68,7 @@ body {
 .scoreTable {
     display: flex;
     justify-content: space-between;
-    width: @canvasSize;
-    background-color: green;
+    width: 100%;
     color: white;
 }
 
@@ -86,7 +85,7 @@ body {
     justify-content: space-between;
     margin: 3% 0;
     padding-bottom: 3%;
-    border-bottom: 2px solid green;
+    border-bottom: 2px solid black;
     font-weight: bold;
 }
 
@@ -99,7 +98,7 @@ body {
     }
     
     #stopBtn {
-        .btn-style(orange, 2px);
+        .btn-style(rgb(243, 105, 13), 2px);
     }
     
     #startBtn {
@@ -137,8 +136,7 @@ body {
             .snake_small {
                 display: flex;
                 .snake_small_block {
-                    width: 10px;
-                    height: 10px;
+                    .containerSize(20px, 20px);
                     background-color: red;
                     border: 1px solid white;
                 }
@@ -147,8 +145,7 @@ body {
             .snake_big {
                 display: flex;
                 .snake_big_block {
-                    width: 20px;
-                    height: 20px;
+                    .containerSize(40px, 40px);
                     background-color: red;
                     border: 1px solid white;
                 }
@@ -161,6 +158,7 @@ body {
 
 .gameOptions_difficulty {
     color: green;
+    font-size: @defaultFontSize;
 
     .difficulty_select {
         border: 2px solid green;
@@ -168,6 +166,7 @@ body {
         color: green;
         padding: 0.4rem;
         font-family: @generalFont;
+        font-size: inherit;
     }
 }
 

@@ -3,19 +3,19 @@
 .gameOptions_actions .actionBtn {
   padding: 0.4rem 0.6rem;
   border-radius: 6px;
+  font-size: 1.4rem;
   background: none;
   font-family: 'Permanent Marker', cursive;
 }
 body {
   font-family: 'Permanent Marker', cursive;
-}
-.gameContainer {
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 600px;
+  background-color: #41df90;
 }
 .gameBoard {
   position: relative;
@@ -29,7 +29,7 @@ body {
   position: absolute;
   top: 35%;
   left: 32.5%;
-  width: 35%;
+  width: 40%;
   border: 3px solid green;
   border-radius: 6px;
   background: black;
@@ -41,6 +41,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 1.4rem;
 }
 .gameBoard .messageBox .messageBox_content .messageBox_content_message {
   color: white;
@@ -67,8 +68,7 @@ body {
 .scoreTable {
   display: flex;
   justify-content: space-between;
-  width: 600px;
-  background-color: green;
+  width: 100%;
   color: white;
 }
 .currentScore,
@@ -84,7 +84,7 @@ body {
   justify-content: space-between;
   margin: 3% 0;
   padding-bottom: 3%;
-  border-bottom: 2px solid green;
+  border-bottom: 2px solid black;
   font-weight: bold;
 }
 .gameOptions_actions {
@@ -94,11 +94,11 @@ body {
   margin-right: 2%;
 }
 .gameOptions_actions #stopBtn {
-  border: 2px solid orange;
-  color: orange;
+  border: 2px solid #f3690d;
+  color: #f3690d;
 }
 .gameOptions_actions #stopBtn:hover {
-  background: orange;
+  background: #f3690d;
   color: white;
 }
 .gameOptions_actions #stopBtn:disabled {
@@ -153,8 +153,8 @@ body {
   display: flex;
 }
 .gameOptions_size .size_check label .snake_small .snake_small_block {
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   background-color: red;
   border: 1px solid white;
 }
@@ -162,13 +162,14 @@ body {
   display: flex;
 }
 .gameOptions_size .size_check label .snake_big .snake_big_block {
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   background-color: red;
   border: 1px solid white;
 }
 .gameOptions_difficulty {
   color: green;
+  font-size: 1.4rem;
 }
 .gameOptions_difficulty .difficulty_select {
   border: 2px solid green;
@@ -176,4 +177,5 @@ body {
   color: green;
   padding: 0.4rem;
   font-family: 'Permanent Marker', cursive;
+  font-size: inherit;
 }
