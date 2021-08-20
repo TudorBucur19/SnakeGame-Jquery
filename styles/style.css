@@ -10,12 +10,66 @@
 body {
   font-family: 'Permanent Marker', cursive;
   margin: 0;
-  padding: 0;
-  width: 100vw;
-  height: 100vh;
+  padding: 0 0 0 1%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: #41df90;
+}
+.sidebar {
+  width: 20%;
+  background-color: #51f542;
+  display: none;
+  padding: 1%;
+  margin-top: 2vh;
+}
+.sidebar_gameOptions_title {
+  color: black;
+  font-size: 1.4rem;
+  align-self: center;
+}
+.options_menu_burgerBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 2vh;
+  width: 40px;
+  height: 40px;
+}
+.options_menu_burgerBtn span {
+  background-color: white;
+  width: 100%;
+  height: 20%;
+  transition: transform 1s;
+}
+.options_menu_burgerBtn span:nth-child(2) {
+  transition: opacity 1s;
+  opacity: 1;
+}
+.options_menu_burgerBtn span:nth-child(1) {
+  transform: rotate(0deg);
+}
+.options_menu_burgerBtn span:nth-child(3) {
+  transform: rotate(0);
+}
+.options_menu_burgerBtn_open {
+  margin-left: 1%;
+}
+.options_menu_burgerBtn_open span {
+  transition: transform 1s;
+  transform: rotate(0deg);
+}
+.options_menu_burgerBtn_open span:nth-child(2) {
+  transition: opacity 1s;
+  opacity: 0;
+}
+.options_menu_burgerBtn_open span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 14px);
+}
+.options_menu_burgerBtn_open span:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -14px);
+}
+.gameContainer {
+  margin-left: 10%;
 }
 .gameBoard {
   position: relative;
@@ -30,7 +84,7 @@ body {
   top: 35%;
   left: 32.5%;
   width: 40%;
-  border: 3px solid green;
+  border: 3px solid #51f542;
   border-radius: 6px;
   background: black;
   font-family: 'Permanent Marker', cursive;
@@ -53,12 +107,12 @@ body {
   text-align: center;
 }
 .gameBoard .messageBox .messageBox_content .dialogBoxBtn {
-  border: 2px solid green;
-  color: green;
+  border: 2px solid #51f542;
+  color: #51f542;
   margin-bottom: 4%;
 }
 .gameBoard .messageBox .messageBox_content .dialogBoxBtn:hover {
-  background: green;
+  background: #51f542;
   color: white;
 }
 .gameBoard .messageBox .messageBox_content .dialogBoxBtn:disabled {
@@ -81,7 +135,7 @@ body {
 .gameOptions {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 3% 0;
   padding-bottom: 3%;
   border-bottom: 2px solid black;
@@ -89,6 +143,8 @@ body {
 }
 .gameOptions_actions {
   display: flex;
+  justify-content: space-between;
+  width: 30%;
 }
 .gameOptions_actions .actionBtn {
   margin-right: 2%;
@@ -131,7 +187,7 @@ body {
 }
 .gameOptions_size {
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 .gameOptions_size .size_check {
   display: flex;
@@ -167,11 +223,14 @@ body {
   background-color: red;
   border: 1px solid white;
 }
-.gameOptions_difficulty {
-  color: green;
+.gameOptions_speed {
+  width: 100%;
+  color: black;
   font-size: 1.4rem;
+  font-weight: bold;
 }
-.gameOptions_difficulty .difficulty_select {
+.gameOptions_speed .speed_select {
+  width: 50%;
   border: 2px solid green;
   border-radius: 6px;
   color: green;

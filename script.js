@@ -22,16 +22,16 @@ $(function(){
 
     const initialSnake = (block) => {
         return [
-        {x: initialX, y: initialY},
-        {x: initialX, y: initialY-block},
-        {x: initialX, y: initialY-block * 2},
+            {x: initialX, y: initialY},
+            {x: initialX, y: initialY-block},
+            {x: initialX, y: initialY-block * 2},
         ];
     };
 
     let snake = initialSnake(snakeSize);
         
 
-    $( "#difficulty_levels" ).on('change', function() {
+    $( "#speed_levels" ).on('change', function() {
         gameSpeed = $('option:selected').val();        
         resetGame();
     });
@@ -47,7 +47,7 @@ $(function(){
             ctx.fillStyle = '#51f542';
             ctx.fillRect(value.x, value.y, snakeSize, snakeSize);
             ctx.strokeStyle = 'white';
-            ctx.strokeRect(value.x, value.y, snakeSize, snakeSize)
+            ctx.strokeRect(value.x, value.y, snakeSize, snakeSize);
             if(index === 0) {
                 // ctx.fillStyle = 'yellow';
                 // ctx.fillRect(value.x, value.y, snakeSize, snakeSize);
@@ -85,6 +85,7 @@ $(function(){
         const lastCell = snake[snake.length - 1];
         if (JSON.stringify(snake[0]) === JSON.stringify(foodPosition)) {
             $('audio#eat')[0].play();
+            $('#eat').prop('volume', 0.1);
             snake.push(lastCell);
             score += 1;
             $('.currentScore_score').text(score);
@@ -259,6 +260,13 @@ $(function(){
 
     // set gamecontainer width according to canvas size
     $('.gameContainer').width(canvas.width);
+
+    //// sidebar
+    $('.options_menu_burgerBtn').click(function() {
+        $('.sidebar').toggle(700);
+        //$('.sidebar').css('display', 'flex');        
+        $('.options_menu_burgerBtn').toggleClass('options_menu_burgerBtn_open')
+    })
  
 }); 
   
