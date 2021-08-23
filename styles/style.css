@@ -7,6 +7,9 @@
   background: none;
   font-family: 'Permanent Marker', cursive;
 }
+* {
+  box-sizing: border-box;
+}
 body {
   font-family: 'Permanent Marker', cursive;
   margin: 0;
@@ -30,47 +33,49 @@ body {
   font-size: 1.4rem;
   align-self: center;
 }
-.options_menu_burgerBtn {
+.menu_burgerBtn {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-top: 2vh;
-  margin-left: 1%;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.menu_burgerBtn_burger {
   width: 40px;
-  height: 40px;
+  height: 6px;
+  background: #fff;
+  border-radius: 5px;
+  transition: all 0.5s ease-in-out;
 }
-.options_menu_burgerBtn span {
-  background-color: white;
-  width: 100%;
-  height: 20%;
-  transition: transform 1s;
+.menu_burgerBtn_burger::before,
+.menu_burgerBtn_burger::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 6px;
+  background: #fff;
+  border-radius: 5px;
+  transition: all 0.5s ease-in-out;
 }
-.options_menu_burgerBtn span:nth-child(2) {
-  transition: opacity 1s;
-  opacity: 1;
+.menu_burgerBtn_burger::before {
+  transform: translateY(-16px);
 }
-.options_menu_burgerBtn span:nth-child(1) {
-  transform: rotate(0deg);
+.menu_burgerBtn_burger::after {
+  transform: translateY(16px);
 }
-.options_menu_burgerBtn span:nth-child(3) {
-  transform: rotate(0);
+.menu_burgerBtn_open {
+  transform: translateX(-40px);
+  background: transparent;
+  box-shadow: none;
 }
-.options_menu_burgerBtn_open {
-  margin-left: 1%;
+.menu_burgerBtn_open::before {
+  transform: rotate(45deg) translate(35px, -35px);
 }
-.options_menu_burgerBtn_open span {
-  transition: transform 1s;
-  transform: rotate(0deg);
-}
-.options_menu_burgerBtn_open span:nth-child(2) {
-  transition: opacity 1s;
-  opacity: 0;
-}
-.options_menu_burgerBtn_open span:nth-child(1) {
-  transform: rotate(45deg) translate(8px, 14px);
-}
-.options_menu_burgerBtn_open span:nth-child(3) {
-  transform: rotate(-45deg) translate(8px, -14px);
+.menu_burgerBtn_open::after {
+  transform: rotate(-45deg) translate(35px, 35px);
 }
 .gameContainer {
   margin-left: 10%;
@@ -290,21 +295,21 @@ body {
   width: 20px;
   height: 20px;
 }
-.gameOptions_snakeColors_options #option1 {
+.gameOptions_snakeColors_options #color_option1 {
   background-color: blue;
 }
-.gameOptions_snakeColors_options #option1 #option1_head {
+.gameOptions_snakeColors_options #color_option1 #color_option1_head {
   background-color: white;
 }
-.gameOptions_snakeColors_options #option2 {
+.gameOptions_snakeColors_options #color_option2 {
   background-color: orange;
 }
-.gameOptions_snakeColors_options #option2 #option2_head {
+.gameOptions_snakeColors_options #color_option2 #color_option2_head {
   background-color: greenyellow;
 }
-.gameOptions_snakeColors_options #option3 {
+.gameOptions_snakeColors_options #color_option3 {
   background-color: yellow;
 }
-.gameOptions_snakeColors_options #option3 #option3_head {
+.gameOptions_snakeColors_options #color_option3 #color_option3_head {
   background-color: purple;
 }

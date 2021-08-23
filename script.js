@@ -271,14 +271,14 @@ $(function(){
     $('.gameContainer').width(canvas.width);
 
     //// sidebar
-    $('.options_menu_burgerBtn').click(function() {
+    $('.menu_burgerBtn').click(function() {
         $('.sidebar').toggle(700);
         //$('.sidebar').css('display', 'flex');        
-        $('.options_menu_burgerBtn').toggleClass('options_menu_burgerBtn_open')
+        $('.menu_burgerBtn_burger').toggleClass('menu_burgerBtn_open')
     });
 
     //snake color option
-    $(".option").click(function() {
+    $(".color_option").click(function() {
         snakeColor = $( this ).css( "background-color" );
         foodColor = $(this).children().css("background-color");
         console.log(typeof snakeColor, foodColor);

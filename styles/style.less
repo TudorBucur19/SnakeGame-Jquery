@@ -2,6 +2,10 @@
 @import './extends';
 @import './mixins';
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: @generalFont;
     margin: 0;
@@ -29,53 +33,56 @@ body {
     align-self: center;
 }
 
-.options_menu_burgerBtn {
+.menu_burgerBtn {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 2vh;
-    margin-left: 1%;
-    .containerSize(40px, 40px);      
-    
-    span {
-        background-color: white;
-        width: 100%;
-        height: 20%;
-        transition: transform 1s;                
-    
-        &:nth-child(2) { 
-            transition: opacity 1s;
-            opacity: 1;
-        }
-        &:nth-child(1) {
-            transform: rotate(0deg);       
-        }
-        &:nth-child(3) {
-            transform: rotate(0);
-        }
-    }
-}
-.options_menu_burgerBtn_open {
-    margin-left: 1%;
+    justify-content: center;
+    align-items: center;
+    .containerSize(60px, 60px);     
+    position: relative;   
+    cursor: pointer;
+    transition: all .5s ease-in-out; 
 }
 
-.options_menu_burgerBtn_open span {
-    transition: transform 1s;        
-    transform: rotate(0deg);    
-    
-    &:nth-child(2) {
-        transition: opacity 1s;
-        opacity: 0;
-    }
-
-    &:nth-child(1) {
-        transform: rotate(45deg) translate(8px, 14px);        
-    }
-
-    &:nth-child(3) {
-        transform: rotate(-45deg) translate(8px, -14px);
-    }
+.menu_burgerBtn_burger {
+    width: 40px;
+    height: 6px;
+    background: #fff;
+    border-radius: 5px;
+    transition: all .5s ease-in-out;
 }
+
+.menu_burgerBtn_burger::before,
+.menu_burgerBtn_burger::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 6px;
+    background: #fff;
+    border-radius: 5px;
+    transition: all .5s ease-in-out;
+}
+
+.menu_burgerBtn_burger::before {
+    transform: translateY(-16px);
+}
+
+.menu_burgerBtn_burger::after {
+    transform: translateY(16px);
+}
+
+.menu_burgerBtn_open {
+    transform: translateX(-40px);
+    background: transparent;
+    box-shadow: none;
+  }
+  .menu_burgerBtn_open::before {
+    transform: rotate(45deg) translate(35px, -35px);
+  }
+  .menu_burgerBtn_open::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+  }
+
+
 
 .gameContainer {
     margin-left: 10%;
@@ -126,9 +133,7 @@ body {
                 margin-bottom: 4%;
             }
         }
-    }
-    
-    
+    }   
 }
 
 .scoreTable {
@@ -300,26 +305,26 @@ body {
         }
     }
     
-    #option1 {
+    #color_option1 {
         background-color: blue;
 
-        #option1_head {
+        #color_option1_head {
             background-color: white;
         }
     }
 
-    #option2 {
+    #color_option2 {
         background-color: orange;
 
-        #option2_head {
+        #color_option2_head {
             background-color: greenyellow;
         }
     }
 
-    #option3 {
+    #color_option3 {
         background-color: yellow;
 
-        #option3_head {
+        #color_option3_head {
             background-color: purple;
         }
     }
