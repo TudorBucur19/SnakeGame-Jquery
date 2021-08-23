@@ -16,7 +16,7 @@
         <h1 class="sidebar_gameOptions_tittle">Game settings</h1>
 
         <div class="gameOptions_speed">
-            <label for="speed_levels">Snake Speed:</label>
+            <label for="speed_levels" class="gameOptions_speed_title">Snake Speed:</label>
             <select id="speed_levels" class="speed_select">
                 <option value="100" selected>Storm</option>
                 <option value="300">Chill</option>
@@ -44,6 +44,28 @@
                     </div>
                 </label>
             </form>    
+        </div>
+
+        <div class="gameOptions_volume">
+            <label class="gameOptions_volume_title">Volume:</Label>
+            <input type="range" id="volumeSlider" class="gameOptions_volume_slider" min="0" max="10" value="5">
+        </div>
+
+        <div class="gameOptions_snakeColors">
+            <h2>Snake colors:</h2>
+            <div class="gameOptions_snakeColors_options">
+                <div class="option" id="option1">
+                    <div class="option_head" id="option1_head"></div>
+                </div>
+
+                <div class="option" id="option2">
+                    <div class="option_head" id="option2_head"></div>
+                </div>
+
+                <div class="option" id="option3">
+                    <div class="option_head" id="option3_head"></div>
+                </div>
+            </div>
         </div>
     </div>
 

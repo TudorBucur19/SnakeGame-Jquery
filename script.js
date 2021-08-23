@@ -15,6 +15,10 @@ $(function(){
 
     let keyPressed = DOWN;
 
+    let gameVolume = 0.5;
+    let snakeColor = '#51f542';
+    let foodColor = '#fa0525';
+
     let gameSpeed = 100;
     let snakeSize = 20;
     const initialX = snakeSize * 4;
@@ -41,10 +45,14 @@ $(function(){
        resetGame();
     });
         
+    $('#volumeSlider').on('change', function(){
+        gameVolume = ($('#volumeSlider').val())/10;
+     });
+
 
     const drawSnake = () => {
         $.each(snake, (index, value) => {
-            ctx.fillStyle = '#51f542';
+            ctx.fillStyle = snakeColor;
             ctx.fillRect(value.x, value.y, snakeSize, snakeSize);
             ctx.strokeStyle = 'white';
             ctx.strokeRect(value.x, value.y, snakeSize, snakeSize);
@@ -70,6 +78,7 @@ $(function(){
         scoreHistory.push(score);
         isGameOver = true;
         $('audio#gameover')[0].play();
+        $('#gameover').prop('volume', gameVolume);
         $('.messageBox').fadeIn(1000, function() {
             toggleDisable('#stopBtn', '#resetBtn')
             const record = Math.max(...scoreHistory);
@@ -85,7 +94,7 @@ $(function(){
         const lastCell = snake[snake.length - 1];
         if (JSON.stringify(snake[0]) === JSON.stringify(foodPosition)) {
             $('audio#eat')[0].play();
-            $('#eat').prop('volume', 0.1);
+            $('#eat').prop('volume', gameVolume);
             snake.push(lastCell);
             score += 1;
             $('.currentScore_score').text(score);
@@ -113,7 +122,7 @@ $(function(){
         };
     });
 
-
+    // snake is not allowed to move backwards
     const checkKeyAllowed = (tempKey) => {
         let key;
         switch(tempKey) {
@@ -160,7 +169,7 @@ $(function(){
 
     //places the food on the map
     const dropFood = () => {
-        ctx.fillStyle = '#fa0525';
+        ctx.fillStyle = foodColor;
         ctx.fillRect(foodPosition.x, foodPosition.y, snakeSize, snakeSize);
     };
 
@@ -258,7 +267,7 @@ $(function(){
         }
     });
 
-    // set gamecontainer width according to canvas size
+    // set gamecontainer width according to canvas width
     $('.gameContainer').width(canvas.width);
 
     //// sidebar
@@ -266,7 +275,14 @@ $(function(){
         $('.sidebar').toggle(700);
         //$('.sidebar').css('display', 'flex');        
         $('.options_menu_burgerBtn').toggleClass('options_menu_burgerBtn_open')
-    })
+    });
+
+    //snake color option
+    $(".option").click(function() {
+        snakeColor = $( this ).css( "background-color" );
+        foodColor = $(this).children().css("background-color");
+        console.log(typeof snakeColor, foodColor);
+      });
  
 }); 
   

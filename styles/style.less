@@ -5,8 +5,7 @@
 body {
     font-family: @generalFont;
     margin: 0;
-    padding: 0 0 0 1%;
-    //.containerSize(100vw, 100vh);
+    padding: 0;
     display: flex;
     justify-content: flex-start;
     background-color: @defaultPrimaryColor;
@@ -18,6 +17,10 @@ body {
     display: none;
     padding: 1%;
     margin-top: 2vh;
+
+    & > * {
+        margin-bottom: 12%;
+    }
 }
 
 .sidebar_gameOptions_title {
@@ -25,11 +28,13 @@ body {
     font-size: @defaultFontSize;
     align-self: center;
 }
+
 .options_menu_burgerBtn {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin-top: 2vh;
+    margin-left: 1%;
     .containerSize(40px, 40px);      
     
     span {
@@ -56,16 +61,17 @@ body {
 
 .options_menu_burgerBtn_open span {
     transition: transform 1s;        
-    transform: rotate(0deg);
-    
+    transform: rotate(0deg);    
     
     &:nth-child(2) {
         transition: opacity 1s;
         opacity: 0;
     }
+
     &:nth-child(1) {
         transform: rotate(45deg) translate(8px, 14px);        
     }
+
     &:nth-child(3) {
         transform: rotate(-45deg) translate(8px, -14px);
     }
@@ -177,6 +183,11 @@ body {
 .gameOptions_size {
     display: flex;
     flex-direction: column;
+
+    .gameOptions_size_title {
+        margin-bottom: 8%;
+    }
+
     .size_check {
         display: flex;
         color: green;
@@ -220,19 +231,97 @@ body {
 }
 
 .gameOptions_speed {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     color: @defaultMneuColor;
-    font-size: @defaultFontSize;
-    font-weight: bold;
+    .fontSize(@defaultFontSize, bold);
+
+    .gameOptions_speed_title {
+        margin-bottom: 8%;
+    }
 
     .speed_select {
-        width: 50%;
+        width: 100%;
         border: 2px solid green;
         border-radius: 6px;
         color: green;
         padding: 0.4rem;
         font-family: @generalFont;
         font-size: inherit;
+    }
+}
+
+.gameOptions_volume {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .fontSize(@defaultFontSize, bold);
+
+    .gameOptions_volume_title {
+        margin-bottom: 8%;
+    }
+
+    .gameOptions_volume_slider {
+        appearance: none;
+        outline: none;
+        height: 20px;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: none;
+        .containerSize(20px, 20px);        
+        background: red;
+
+        &:hover {
+            transform: scale(1.3);
+        }
+    }
+}
+
+.gameOptions_snakeColors {
+    width: 100%;    
+}
+
+.gameOptions_snakeColors_options {
+
+    & > * {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 5%;
+
+        &:hover {
+            transform: scale(1.1)
+        }
+
+        .option_head {
+            .containerSize(20px, 20px);
+        }
+    }
+    
+    #option1 {
+        background-color: blue;
+
+        #option1_head {
+            background-color: white;
+        }
+    }
+
+    #option2 {
+        background-color: orange;
+
+        #option2_head {
+            background-color: greenyellow;
+        }
+    }
+
+    #option3 {
+        background-color: yellow;
+
+        #option3_head {
+            background-color: purple;
+        }
     }
 }
 

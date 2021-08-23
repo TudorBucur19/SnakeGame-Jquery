@@ -10,7 +10,7 @@
 body {
   font-family: 'Permanent Marker', cursive;
   margin: 0;
-  padding: 0 0 0 1%;
+  padding: 0;
   display: flex;
   justify-content: flex-start;
   background-color: #41df90;
@@ -22,6 +22,9 @@ body {
   padding: 1%;
   margin-top: 2vh;
 }
+.sidebar > * {
+  margin-bottom: 12%;
+}
 .sidebar_gameOptions_title {
   color: black;
   font-size: 1.4rem;
@@ -32,6 +35,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   margin-top: 2vh;
+  margin-left: 1%;
   width: 40px;
   height: 40px;
 }
@@ -189,6 +193,9 @@ body {
   display: flex;
   flex-direction: column;
 }
+.gameOptions_size .gameOptions_size_title {
+  margin-bottom: 8%;
+}
 .gameOptions_size .size_check {
   display: flex;
   color: green;
@@ -224,17 +231,80 @@ body {
   border: 1px solid white;
 }
 .gameOptions_speed {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   color: black;
   font-size: 1.4rem;
   font-weight: bold;
 }
+.gameOptions_speed .gameOptions_speed_title {
+  margin-bottom: 8%;
+}
 .gameOptions_speed .speed_select {
-  width: 50%;
+  width: 100%;
   border: 2px solid green;
   border-radius: 6px;
   color: green;
   padding: 0.4rem;
   font-family: 'Permanent Marker', cursive;
   font-size: inherit;
+}
+.gameOptions_volume {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.gameOptions_volume .gameOptions_volume_title {
+  margin-bottom: 8%;
+}
+.gameOptions_volume .gameOptions_volume_slider {
+  appearance: none;
+  outline: none;
+  height: 20px;
+}
+.gameOptions_volume input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  width: 20px;
+  height: 20px;
+  background: red;
+}
+.gameOptions_volume input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+.gameOptions_snakeColors {
+  width: 100%;
+}
+.gameOptions_snakeColors_options > * {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5%;
+}
+.gameOptions_snakeColors_options > *:hover {
+  transform: scale(1.1);
+}
+.gameOptions_snakeColors_options > * .option_head {
+  width: 20px;
+  height: 20px;
+}
+.gameOptions_snakeColors_options #option1 {
+  background-color: blue;
+}
+.gameOptions_snakeColors_options #option1 #option1_head {
+  background-color: white;
+}
+.gameOptions_snakeColors_options #option2 {
+  background-color: orange;
+}
+.gameOptions_snakeColors_options #option2 #option2_head {
+  background-color: greenyellow;
+}
+.gameOptions_snakeColors_options #option3 {
+  background-color: yellow;
+}
+.gameOptions_snakeColors_options #option3 #option3_head {
+  background-color: purple;
 }
