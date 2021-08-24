@@ -102,45 +102,25 @@
                 <button id="startBtn" class="actionBtn">Start</button>
                 <button id="resetBtn" class="actionBtn">Reset</button>
             </div >
-            <!-- <div class="gameOptions_size">
-                <form class="size_check">
-                    <input type="radio" class="size_check_radio" id="small" name="snakeSize" value="20" checked>
-                    <label for="small">
-                        <div class="snake_small">
-                            <div class="snake_small_block"></div>
-                            <div class="snake_small_block"></div>
-                            <div class="snake_small_block"></div>
-                        </div>
-                    </label>
-                    <input type="radio" id="large" name="snakeSize" value="40">
-                    <label for="large">
-                        <div class="snake_big">
-                            <div class="snake_big_block"></div>
-                            <div class="snake_big_block"></div>
-                            <div class="snake_big_block"></div>
-                        </div>
-                    </label>
-                </form>    
-            </div>
-             -->
-            <!-- <div class="gameOptions_difficulty">
-                <label for="difficulty_levels">Speed:</label>
-                <select id="difficulty_levels" class="difficulty_select">
-                    <option value="100" selected>Storm</option>
-                    <option value="300">Chill</option>
-                    <option value="500">Slow</option>
-                </select>
-            </div> -->
         </div>
     </div>
-        <section>
-            <audio id="eat">
-                <source src="./assets/sounds/eatfood.ogg" type="audio/mpeg">
-            </audio>
-            <audio id="gameover">
-                <source src="./assets/sounds/gameover.ogg" type="audio/mpeg">
-            </audio>
-        </section>
+
+    <div class="rightSidebar">
+        <h2 class="rightSidebar_title">User's score history:</h2>
+        <ul class="rightSidebar_scoreListContainer"></ul>
+    </div>
+
+    <section>
+        <audio id="eat">
+            <source src="./assets/sounds/eatfood.ogg" type="audio/mpeg">
+        </audio>
+        <audio id="gameover">
+            <source src="./assets/sounds/gameover.ogg" type="audio/mpeg">
+        </audio>
+        <audio id="soundtrack">
+            <source src="./assets//sounds//soundtrack.mp3" type="audio/mpeg">
+        </audio>
+    </section>
     <script src="script.js"></script>
 </body>
 </html>

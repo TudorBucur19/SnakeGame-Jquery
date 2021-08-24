@@ -3,24 +3,27 @@
 @import './mixins';
 
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: @generalFont;
-    margin: 0;
-    padding: 0;
+    font-family: @generalFont;    
     display: flex;
     justify-content: flex-start;
     background-color: @defaultPrimaryColor;
+    padding: 1% 0 0 0;
+    max-height: 100vh;
+    max-width: 100vw;
 }
 
 .sidebar {
     width: 20%;
     background-color: @defaultSnakeColor;    
     display: none;
+    flex-direction: column;
     padding: 1%;
-    margin-top: 2vh;
 
     & > * {
         margin-bottom: 12%;
@@ -37,10 +40,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    .containerSize(60px, 60px);     
+    .containerSize(40px, 40px);     
     position: relative;   
     cursor: pointer;
     transition: all .5s ease-in-out; 
+    margin-left: 1%;
 }
 
 .menu_burgerBtn_burger {
@@ -85,7 +89,7 @@ body {
 
 
 .gameContainer {
-    margin-left: 10%;
+    margin: 0 10%;
 }
 
 .gameBoard {
@@ -94,53 +98,54 @@ body {
     #canvas {
         background-color: black;
         margin: 0 auto;
-        
-    }
-
-    .messageBox {
-        display: none;
-        position: absolute;
-        .dialogBoxPosition(30, 35);
-        width: 40%;
-        border: 3px solid @defaultSnakeColor;
-        border-radius: 6px;
-        background: black;
-        font-family: 'Permanent Marker', cursive;
-        z-index: 10;
-
-        .messageBox_content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;   
-            font-size: @defaultFontSize;
-            
-            .messageBox_content_message {
-                color: white;
-            }
-
-            .messageBox_content_recordMsg {
-                display: none;
-                color: white;
-                margin: 3%;
-                text-align: center;
-            }
-        
-
-            .dialogBoxBtn {
-                &:extend(.primaryBtn);
-                .btn-style(@defaultSnakeColor, 2px);
-                margin-bottom: 4%;
-            }
-        }
-    }   
+    }    
 }
+
+.messageBox {
+    display: none;
+    position: absolute;
+    .dialogBoxPosition(30, 35);
+    width: 40%;
+    border: 3px solid @defaultSnakeColor;
+    border-radius: 6px;
+    background: black;
+    font-family: 'Permanent Marker', cursive;
+    z-index: 10;
+
+    .messageBox_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;   
+        font-size: @defaultFontSize;
+        
+        .messageBox_content_message {
+            color: white;
+            padding: 5% 0;
+        }
+
+        .messageBox_content_recordMsg {
+            display: none;
+            color: white;
+            margin: 3%;
+            text-align: center;
+        }
+    
+
+        .dialogBoxBtn {
+            &:extend(.primaryBtn);
+            .btn-style(@defaultSnakeColor, 2px);
+            margin-bottom: 4%;
+        }
+    }
+}   
 
 .scoreTable {
     display: flex;
     justify-content: space-between;
     width: 100%;
     color: white;
+    padding-bottom: 2%;
 }
 
 .currentScore,  .bestScore {
@@ -195,6 +200,8 @@ body {
 
     .size_check {
         display: flex;
+        width: 100%;
+        justify-content: space-between;
         color: green;
 
         input {
@@ -294,7 +301,7 @@ body {
     & > * {
         display: flex;
         justify-content: flex-end;
-        margin-top: 5%;
+        margin-top: 8%;
 
         &:hover {
             transform: scale(1.1)
@@ -326,6 +333,38 @@ body {
 
         #color_option3_head {
             background-color: purple;
+        }
+    }
+}
+
+.rightSidebar {
+    width: 16%;
+    background-color: @defaultSnakeColor;    
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    height: 96%;
+    padding: 1%;
+
+    .rightSidebar_title {
+        text-align: center;
+        border-bottom: 3px solid black;
+        padding-bottom: 5%;
+    }
+
+    .rightSidebar_scoreListContainer {
+        display: flex;
+        flex-direction: column;
+        * {
+            margin-right: 0;
+        }
+
+        .scoreListItem {
+            display: flex;
+            justify-content: space-between;
+            list-style-type: none;
+            .fontSize(1.4rem);
         }
     }
 }

@@ -33,6 +33,8 @@ $(function(){
     };
 
     let snake = initialSnake(snakeSize);
+
+    let scoreItem = '<p class="scoreRow">000</p>';
         
 
     $( "#speed_levels" ).on('change', function() {
@@ -77,6 +79,10 @@ $(function(){
         const oldRecord = Math.max(...scoreHistory);
         scoreHistory.push(score);
         isGameOver = true;
+        const latestScore = scoreHistory.slice(-1);
+        const indexScore = scoreHistory.length - 1;
+        //const listItem = "<li class='scoreListItem'>Round " + indexScore + ": " +" <span>" + latestScore + "</span></li>"
+        const listItem = `<li class='scoreListItem'>Round ${indexScore}: <span>${latestScore}</span></li>`
         $('audio#gameover')[0].play();
         $('#gameover').prop('volume', gameVolume);
         $('.messageBox').fadeIn(1000, function() {
@@ -87,6 +93,7 @@ $(function(){
                 $('.messageBox_content_recordMsg').show(500).text('Congrats! You hit a new record!');
             }
         });
+        $('.rightSidebar_scoreListContainer').append(listItem);
     };
 
     //triggered only when snake reaches the food
@@ -259,7 +266,7 @@ $(function(){
         });        
     });
 
-    // start and pause the game by pressing SPACE bar
+    // start and pause game by pressing SPACE bar
     $(document).keydown(function(e) { 
         if (isGameOver) return; 
         if (e.key === " ") {
@@ -273,16 +280,16 @@ $(function(){
     //// sidebar
     $('.menu_burgerBtn').click(function() {
         $('.sidebar').toggle(700);
-        //$('.sidebar').css('display', 'flex');        
+        $('.rightSidebar').toggle(700);
+        $('.sidebar').css('display', 'flex');        
         $('.menu_burgerBtn_burger').toggleClass('menu_burgerBtn_open')
     });
 
     //snake color option
     $(".color_option").click(function() {
-        snakeColor = $( this ).css( "background-color" );
+        snakeColor = $(this).css("background-color");
         foodColor = $(this).children().css("background-color");
-        console.log(typeof snakeColor, foodColor);
-      });
+    });
  
 }); 
   
