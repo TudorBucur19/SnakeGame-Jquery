@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <title>Snake</title>
 </head>
 <body>
@@ -47,8 +49,8 @@
         </div>
 
         <div class="gameOptions_volume">
-            <label class="gameOptions_volume_title">Volume:</Label>
-            <input type="range" id="volumeSlider" class="gameOptions_volume_slider" min="0" max="10" value="5">
+            <label class="gameOptions_volume_title">Effects volume:</Label>
+            <input type="range" id="effectsVolumeSlider" class="gameOptions_volume_slider" min="0" max="10" value="5">
         </div>
 
         <div class="gameOptions_snakeColors">
@@ -67,6 +69,16 @@
                 </div>
             </div>
         </div>
+
+        <div>
+            <h2>Soundtrack:</h2>
+            <div class="bgMusic">
+                <label class="bgMusic_label" for="soundtrackPlay"><i class="fas fa-volume-mute fa-2x"></i></label>
+                <input type="range" id="musicVolumeSlider" class="bgMusic_volume_slider" min="0" max="10" value="10">
+                <input type="checkbox" id="soundtrackPlay">
+            </div>
+        </div>
+        
     </div>
 
     <div class="menu_burgerBtn">
@@ -117,8 +129,8 @@
         <audio id="gameover">
             <source src="./assets/sounds/gameover.ogg" type="audio/mpeg">
         </audio>
-        <audio id="soundtrack">
-            <source src="./assets//sounds//soundtrack.mp3" type="audio/mpeg">
+        <audio id="soundtrack" loop="loop">
+            <source src="./assets/sounds/soundtrack.mp3" type="audio/mpeg">
         </audio>
     </section>
     <script src="script.js"></script>

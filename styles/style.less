@@ -19,21 +19,54 @@ body {
 }
 
 .sidebar {
-    width: 20%;
+    .containerSize(20%, 96vh);
     background-color: @defaultSnakeColor;    
     display: none;
     flex-direction: column;
     padding: 1%;
+
+    .sidebar_gameOptions_title {
+        color: @defaultMneuColor;
+        font-size: @defaultFontSize;
+        align-self: center;
+    }
 
     & > * {
         margin-bottom: 12%;
     }
 }
 
-.sidebar_gameOptions_title {
-    color: @defaultMneuColor;
-    font-size: @defaultFontSize;
-    align-self: center;
+
+
+.rightSidebar {
+    .containerSize(16%, 96%);
+    background-color: @defaultSnakeColor;    
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    padding: 1%;
+
+    .rightSidebar_title {
+        text-align: center;
+        border-bottom: 3px solid black;
+        padding-bottom: 5%;
+    }
+
+    .rightSidebar_scoreListContainer {
+        display: flex;
+        flex-direction: column;
+        * {
+            margin-right: 0;
+        }
+
+        .scoreListItem {
+            display: flex;
+            justify-content: space-between;
+            list-style-type: none;
+            .fontSize(1.4rem);
+        }
+    }
 }
 
 .menu_burgerBtn {
@@ -87,7 +120,6 @@ body {
   }
 
 
-
 .gameContainer {
     margin: 0 10%;
 }
@@ -97,7 +129,7 @@ body {
 
     #canvas {
         background-color: black;
-        margin: 0 auto;
+        //margin: 0 auto;
     }    
 }
 
@@ -337,37 +369,18 @@ body {
     }
 }
 
-.rightSidebar {
-    width: 16%;
-    background-color: @defaultSnakeColor;    
+.bgMusic {
+    .fontSize(@defaultFontSize, bold);
     display: flex;
-    flex-direction: column;
-    position: absolute;
-    right: 0;
-    height: 96%;
-    padding: 1%;
+    justify-content: space-between;
 
-    .rightSidebar_title {
-        text-align: center;
-        border-bottom: 3px solid black;
-        padding-bottom: 5%;
-    }
-
-    .rightSidebar_scoreListContainer {
-        display: flex;
-        flex-direction: column;
-        * {
-            margin-right: 0;
-        }
-
-        .scoreListItem {
-            display: flex;
-            justify-content: space-between;
-            list-style-type: none;
-            .fontSize(1.4rem);
-        }
+    #soundtrackPlay {
+        transform: scale(1.5);
+        align-self: center;
+        visibility: hidden;
     }
 }
+
 
 
 

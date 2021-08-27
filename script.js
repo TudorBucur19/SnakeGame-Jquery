@@ -1,4 +1,4 @@
-$(function(){
+$(function(){    
 
     const canvas = $('#canvas')[0];
     const ctx = canvas.getContext('2d');
@@ -15,7 +15,8 @@ $(function(){
 
     let keyPressed = DOWN;
 
-    let gameVolume = 0.5;
+    let gameEffectsVolume = 0.5;
+    let gameMusicVolume = 0.5;
     let snakeColor = '#51f542';
     let foodColor = '#fa0525';
 
@@ -32,10 +33,7 @@ $(function(){
         ];
     };
 
-    let snake = initialSnake(snakeSize);
-
-    let scoreItem = '<p class="scoreRow">000</p>';
-        
+    let snake = initialSnake(snakeSize);        
 
     $( "#speed_levels" ).on('change', function() {
         gameSpeed = $('option:selected').val();        
@@ -47,10 +45,14 @@ $(function(){
        resetGame();
     });
         
-    $('#volumeSlider').on('change', function(){
-        gameVolume = ($('#volumeSlider').val())/10;
-     });
+    $('#effectsVolumeSlider').on('change', function(){
+        gameEffectsVolume = ($(this).val())/10;
+    });
 
+    $('#musicVolumeSlider').on('change', function(){
+        //gameMusicVolume = ($(this).val())/10;
+        $('#soundtrack').prop('volume', ($(this).val())/10);
+    });
 
     const drawSnake = () => {
         $.each(snake, (index, value) => {
@@ -84,7 +86,7 @@ $(function(){
         //const listItem = "<li class='scoreListItem'>Round " + indexScore + ": " +" <span>" + latestScore + "</span></li>"
         const listItem = `<li class='scoreListItem'>Round ${indexScore}: <span>${latestScore}</span></li>`
         $('audio#gameover')[0].play();
-        $('#gameover').prop('volume', gameVolume);
+        $('#gameover').prop('volume', gameEffectsVolume);
         $('.messageBox').fadeIn(1000, function() {
             toggleDisable('#stopBtn', '#resetBtn')
             const record = Math.max(...scoreHistory);
@@ -101,7 +103,7 @@ $(function(){
         const lastCell = snake[snake.length - 1];
         if (JSON.stringify(snake[0]) === JSON.stringify(foodPosition)) {
             $('audio#eat')[0].play();
-            $('#eat').prop('volume', gameVolume);
+            $('#eat').prop('volume', gameEffectsVolume);
             snake.push(lastCell);
             score += 1;
             $('.currentScore_score').text(score);
@@ -290,6 +292,17 @@ $(function(){
         snakeColor = $(this).css("background-color");
         foodColor = $(this).children().css("background-color");
     });
- 
+
+    //soundtrack options
+    $("#soundtrackPlay").change(function() {
+        if(this.checked) {
+            $('audio#soundtrack')[0].play();
+            $('.bgMusic_label').html('<i class="fas fa-volume-up fa-2x"></i>')
+        };
+        if(!this.checked) {
+            $('audio#soundtrack')[0].pause();
+            $('.bgMusic_label').html('<i class="fas fa-volume-mute fa-2x"></i>')
+        }
+    }); 
 }); 
   

@@ -23,18 +23,48 @@ body {
 }
 .sidebar {
   width: 20%;
+  height: 96vh;
   background-color: #51f542;
   display: none;
   flex-direction: column;
   padding: 1%;
 }
-.sidebar > * {
-  margin-bottom: 12%;
-}
-.sidebar_gameOptions_title {
+.sidebar .sidebar_gameOptions_title {
   color: black;
   font-size: 1.4rem;
   align-self: center;
+}
+.sidebar > * {
+  margin-bottom: 12%;
+}
+.rightSidebar {
+  width: 16%;
+  height: 96%;
+  background-color: #51f542;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  padding: 1%;
+}
+.rightSidebar .rightSidebar_title {
+  text-align: center;
+  border-bottom: 3px solid black;
+  padding-bottom: 5%;
+}
+.rightSidebar .rightSidebar_scoreListContainer {
+  display: flex;
+  flex-direction: column;
+}
+.rightSidebar .rightSidebar_scoreListContainer * {
+  margin-right: 0;
+}
+.rightSidebar .rightSidebar_scoreListContainer .scoreListItem {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  font-size: 1.4rem;
+  font-weight: null;
 }
 .menu_burgerBtn {
   display: flex;
@@ -89,7 +119,6 @@ body {
 }
 .gameBoard #canvas {
   background-color: black;
-  margin: 0 auto;
 }
 .messageBox {
   display: none;
@@ -321,32 +350,14 @@ body {
 .gameOptions_snakeColors_options #color_option3 #color_option3_head {
   background-color: purple;
 }
-.rightSidebar {
-  width: 16%;
-  background-color: #51f542;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  right: 0;
-  height: 96%;
-  padding: 1%;
-}
-.rightSidebar .rightSidebar_title {
-  text-align: center;
-  border-bottom: 3px solid black;
-  padding-bottom: 5%;
-}
-.rightSidebar .rightSidebar_scoreListContainer {
-  display: flex;
-  flex-direction: column;
-}
-.rightSidebar .rightSidebar_scoreListContainer * {
-  margin-right: 0;
-}
-.rightSidebar .rightSidebar_scoreListContainer .scoreListItem {
+.bgMusic {
+  font-size: 1.4rem;
+  font-weight: bold;
   display: flex;
   justify-content: space-between;
-  list-style-type: none;
-  font-size: 1.4rem;
-  font-weight: null;
+}
+.bgMusic #soundtrackPlay {
+  transform: scale(1.5);
+  align-self: center;
+  visibility: hidden;
 }
